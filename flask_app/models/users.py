@@ -38,10 +38,23 @@ class User:
             flash('Password need to be 8 characters long and have a special character.')
             valid = False
         if len(User['password']) < 8:
-            flash('Password need to be 8 characters long and have a special character.')
+            flash('Password need to be 8 characters')
             valid = False
         if not User['password'] == User['confirm_password']:
             flash("Your Passwords Don't Match")
             valid = False
         return valid
         
+    @classmethod
+    def add_new_user(cls, data):
+        query = "INSERT INTO users(first_name, last_name, email, password) VALUES(%(first_name)s, %(last_name)s, %(email)s, %(password)s)"
+        results = connectToMySQL("blacklist").query_db(query, data)
+        return results
+    
+    @classmethod
+    def get_by_email(cls ,data):
+        query = "SELECT * FROM users WHERE email = %(email)s"
+        results = connectToMySQL("blacklist").query_db(query, data)
+        if not results or len(results) < 1:
+            return False
+        return results[0]

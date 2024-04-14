@@ -15,33 +15,50 @@
     <div class="container-fluid">
         <div>
             <div class="row">
-                <h1 class="text-center display-1 p-3 text-light mb-5">BLACKLIST</h1>
-            </div>
-            <div class="row">
-                <div class=" rounded mt-5 mb-5">
-                    <p class="text-light display-5 d-flex justify-content-center ">If You're On The BlackList, You May Not Return</p>
-                </div>
+                <h1 class="text-center display-1 p-3 text-light mb-3">BLACKLIST</h1>
             </div>
 
-            <div class="row">
-                <div class="bg-light rounded w-50 center">
-                    <form action="">
-                        <h2 class="text-center mt-2">CREATE ACCOUNT</h2>
-                        <label class="mb-1" for="first_name">First Name:</label>
-                        <input class="form-control bg-secondary" type="text" name="first_name">
-                        <label class="mb-1" for="last_name">Last Name:</label>
-                        <input class="form-control bg-secondary" type="text" name="last_name">
-                        <label class="mb-1" for="email">Email:</label>
-                        <input class="form-control bg-secondary" type="text" name="email">
-                        <label class="mb-1" for="password">Password:</label>
-                        <input class="form-control bg-secondary" type="text" name="password">
-                        <label class="mb-1" for="confirm_password">Confirm Password:</label>
-                        <input class="form-control bg-secondary" type="text" name="confirm_password">
-                        <div class="text-end">
-                            <button class="btn btn-warning mt-3 mb-2">Create</button>
-                        </div>
-                    </form>
+            <!-- ---------------------------- -->
+            <div class="container-md">
+                
+                
+                <div class="row">
+                    <div class="mt-5 mb-5 d-flex justify-content-around">
+                        <p class="text-light h3">If You're On The BlackList, You May Not Return</p>
+                        <a class="btn btn-danger btn-lg mb-3" href="/">Home</a>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="bg-light rounded w-75 center">
+                        <form action="/new/user" method="post">
+                            <h2 class="text-center mt-2">CREATE ACCOUNT</h2>
+                            <label class="mb-1" for="first_name">First Name:</label>
+                            <input class="form-control bg-secondary" type="text" name="first_name">
+                            <label class="mb-1" for="last_name">Last Name:</label>
+                            <input class="form-control bg-secondary" type="text" name="last_name">
+                            <label class="mb-1" for="email">Email:</label>
+                            <input class="form-control bg-secondary" type="text" name="email">
+                            <label class="mb-1" for="password">Password:</label>
+                            <input class="form-control bg-secondary" type="password" name="password">
+                            <label class="mb-1" for="confirm_password">Confirm Password:</label>
+                            <input class="form-control bg-secondary" type="password" name="confirm_password">
+                            <div class="text-end">
+                                <button class="btn btn-warning mt-3 mb-2">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="text-center">
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                {% for m in messages %}
+                                    <p class="text-light">{{m}}</p>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                </div>
+
+
             </div>
             
 
