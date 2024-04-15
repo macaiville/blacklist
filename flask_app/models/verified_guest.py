@@ -54,3 +54,12 @@ class Vguest:
         if not results or len(results) < 1:
             return False
         return from_the_bottom
+    
+    @classmethod
+    def delete_guest(cls, data):
+        data = {
+            'id': data
+        }
+        query = "DELETE FROM verified_guest WHERE id = %(id)s"
+        results = connectToMySQL('blacklist').query_db(query, data)
+        return results

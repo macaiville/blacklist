@@ -15,4 +15,11 @@ def today_guest():
 
     return redirect('/home')
 
+@app.route('/delete/<int:id>')
+def delete_guest(id):
+    if len(session) < 1:
+        return redirect('/')
+    
+    Vguest.delete_guest(id)
 
+    return redirect('/home')

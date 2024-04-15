@@ -16,37 +16,48 @@
         <div class="row">
             <h1 class="text-center display-1 p-3 text-light mb-5">BLACKLIST</h1>
         </div>
-        <div class="row">
-            <div class="text-center mb-5 d-flex justify-content-around">
-                <a class="btn btn-primary p-2" href="/home">Home</a>
-                <a class="btn btn-success p-2" href="">Verify Guest</a>
-                <a class="btn btn-secondary p-2" href="/logout">Logout</a>
+
+        <div class="container-lg">
+
+            <div class="row">
+                <div class="text-center mb-5 d-flex justify-content-around">
+                    <a class="btn btn-primary p-2" href="/home">Home</a>
+                    <a class="btn btn-success p-2" href="">Verify Guest</a>
+                    <a class="btn btn-secondary p-2" href="/logout">Logout</a>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-3 center">
-                <form action="/blocked_for_life" method="post">
-                    <input type="hidden" name="user_id" value={{session['user_id']}}>
-                    <label class="text-light mb-1" for="phone_number">Phone Number:</label>
-                    <input class="form-control mb-1" type="tel" name="phone_number">
-                    <label class="text-light mb-1" for="comment">Comments:</label>
-                    <textarea class="form-control mb-1" name="comment" cols="30" rows="10"></textarea>
-                    <div class="text-end mt-2">
-                        <button class="btn btn-danger" type="submit">BlackList</button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-2">
-                {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for m in messages %}
-                            <p class="text-light">{{m}}</p>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
+            <div class="row">
+                <div class=" w-100 center">
+                    <form action="/blocked_for_life" method="post">
+                        <input type="hidden" name="user_id" value={{session['user_id']}}>
+                        <label class="text-light mb-1" for="phone_number">Phone Number:</label>
+                        <input class="form-control mb-1" type="tel" name="phone_number">
+                        <label class="text-light mb-1" for="comment">Comments:</label>
+                        <textarea class="form-control mb-1" name="comment" cols="30" rows="10"></textarea>
+                        <div class="text-end mt-2">
+                            <button class="btn btn-danger" type="submit">BlackList</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-2">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for m in messages %}
+                                <p class="text-light">{{m}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+    
             </div>
 
+
+
+
+
         </div>
+
+
     </div>
     
 
