@@ -22,10 +22,27 @@
                     <p class="display-5 d-flex justify-content-center orbitron ">If You're On The BlackList, You May Not Return</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="d-flex justify-content-around p-5 mt-5">
-                    <a class="btn btn-danger btn-lg" href="">ENTER</a>
-                    <a class="btn btn-warning btn-lg" href="">CREATE</a>
+            <div class="row mt-5 d-flex justify-content-center">
+                <div class="col-3 m-3">
+                    <form action="/login" method="post">
+                        <label class="mb-1 text-light" for="email">Email:</label>
+                        <input class="form-control bg-secondary" type="text" name="email">
+                        <label class="mb-1 text-light" for="password">Password:</label>
+                        <input class="form-control bg-secondary" type="password" name="password">
+                        <button class="btn btn-danger btn-lg mt-2">Enter</button>
+                    </form>
+                </div>
+                <div class="col-3">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for m in messages %}
+                                <p class="text-light">{{m}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="col-5 text-end mt-5">
+                    <a class="btn btn-warning btn-lg" href="/create_user">CREATE</a>
                 </div>
             </div>
 
