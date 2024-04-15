@@ -22,7 +22,7 @@
                 <a class="btn btn-danger p-2" href="/blocked">BlackList A Guest</a>
                 <a class="btn btn-success p-2" href="">Verify Guest</a>
                 <div class="">
-                    <a class="btn btn-success p-2" href="/logout">Logout</a>
+                    <a class="btn btn-secondary p-2" href="/logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -38,12 +38,14 @@
 
                     <tbody>
                         {% if data %}
-                            {% for d in data %}
+                            {%for d in data %}
                             <tr>
+                                {% if d['users.id'] == session['user_id'] %}
                                 <td>{{d.first_name}}</td>
                                 <td>{{d.last_name}}</td>
                                 <td>{{d.date}}</td>
                                 <td>{{d.phone_number}}</td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         {% else %}
