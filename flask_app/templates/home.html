@@ -37,24 +37,25 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Jason</td>
-                            <td>Jones</td>
-                            <td>02/02/2024</td>
-                            <td>626-235-9897</td>
-                        </tr>
-                        <tr>
-                            <td>Jason</td>
-                            <td>Jones</td>
-                            <td>02/02/2024</td>
-                            <td>626-235-9897</td>
-                        </tr>
+                        {% if data %}
+                            {% for d in data %}
+                            <tr>
+                                <td>{{d.first_name}}</td>
+                                <td>{{d.last_name}}</td>
+                                <td>{{d.date}}</td>
+                                <td>{{d.phone_number}}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <p>NO DATA</p>
+                        {% endif %}
                     </tbody>
                 </table>
             </div>
 
             <div class="col-3">
-                <form action="">
+                <form action="/add_guest" method="post">
+                    <input type="hidden" name="user_id" value={{session['user_id']}}>
                     <label class="text-light mb-1" for="first_name">First Name:</label>
                     <input class="form-control mb-1" type="text" name="first_name">
                     <label class="text-light mb-1" for="last_name">Last Name:</label>
