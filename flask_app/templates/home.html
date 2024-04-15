@@ -19,7 +19,7 @@
         </div>
         <div class="row">
             <div class="text-center mb-5 d-flex justify-content-around">
-                <a class="btn btn-danger p-2" href="">BlackList A Guest</a>
+                <a class="btn btn-danger p-2" href="/blocked">BlackList A Guest</a>
                 <a class="btn btn-success p-2" href="">Verify Guest</a>
                 <div class="">
                     <a class="btn btn-success p-2" href="/logout">Logout</a>
@@ -68,6 +68,16 @@
                         <button class="btn btn-warning" type="submit">Create</button>
                     </div>
                 </form>
+            </div>
+
+            <div class="col-2">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for m in messages %}
+                            <p class="text-light">{{m}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             </div>
 
         </div>
