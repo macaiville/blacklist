@@ -75,3 +75,15 @@ class Vguest:
         if not results or len(results) < 1:
             return False
         return results[0]
+    
+    @classmethod
+    def search_blocked(cls, data):
+        data = {
+            'phone_number': data
+        }
+        query = " SELECT * FROM blocked WHERE phone_number = %(phone_number)s"
+        results = connectToMySQL('blacklist').query_db(query, data)
+        print(results)
+        if not results or len(results) < 1:
+            return False
+        return results[0]

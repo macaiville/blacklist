@@ -33,6 +33,19 @@ def search_vguest():
     if len(session) < 1:
         return redirect('/')
 
-    phone = request.form.get('phone_number') 
-    data = Vguest.search_vguest(phone)
-    return redirect('/search/verified_guest')
+    phone_number = request.form.get('phone_number') 
+    data = Vguest.search_vguest(phone_number)
+    return render_template('search.html', data = data)
+
+@app.route('/search/blocked')
+def search_blocked():
+    return render_template('blocked.html')
+
+# @app.route('/search_vguest', methods=['POST'])
+# def search_vguest():
+#     if len(session) < 1:
+#         return redirect('/')
+
+#     phone_number = request.form.get('phone_number') 
+#     data = Vguest.search_vguest(phone_number)
+#     return render_template('search.html', data = data)
