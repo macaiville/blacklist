@@ -21,6 +21,7 @@
             <div class="text-center mb-5 d-flex justify-content-around">
                 <a class="btn btn-danger p-2" href="/blocked">BlackList A Guest</a>
                 <a class="btn btn-success p-2" href="">Verify Guest</a>
+                <a class="btn btn-success" href="/search/verified_guest">Search Verified Guest</a>
                 <div class="">
                     <a class="btn btn-secondary p-2" href="/logout">Logout</a>
                 </div>
@@ -85,7 +86,17 @@
                     {% endif %}
                 {% endwith %}
             </div>
-
+        </div>
+        <div class="row">
+            <div class="col-3 m-5">
+                <form action="/search_vguest" method="post">
+                    <label class="text-light mb-2" for="phone_number">Enter A Phone Number:</label>
+                    <input class="form-control" type="tel" name="phone_number">
+                    <div class="text-end">
+                        <button class="btn btn-primary mt-2">Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     

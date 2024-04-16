@@ -63,3 +63,15 @@ class Vguest:
         query = "DELETE FROM verified_guest WHERE id = %(id)s"
         results = connectToMySQL('blacklist').query_db(query, data)
         return results
+
+    @classmethod
+    def search_vguest(cls, data):
+        data = {
+            'phone_number': data
+        }
+        query = " SELECT * FROM verified_guest WHERE phone_number = %(phone_number)s"
+        results = connectToMySQL('blacklist').query_db(query, data)
+        print(results)
+        if not results or len(results) < 1:
+            return False
+        return results[0]
