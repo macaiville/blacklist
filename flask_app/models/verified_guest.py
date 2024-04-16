@@ -44,10 +44,34 @@ class Vguest:
     @classmethod
     def get_all_guest(cls, data):
         data = {
-            "user_id": session['user_id']
+            "users_id": session['user_id']
         }
-        query = f"SELECT * FROM verified_guest LEFT JOIN users ON user_id = {session['user_id']}"
+        query = "SELECT * FROM verified_guest LEFT JOIN users ON user_id = %(users_id)s"
         results = connectToMySQL('blacklist').query_db(query, data)
+        from_the_bottom = []
+        for dictionary in reversed(results):
+            from_the_bottom.append(dictionary)
         if not results or len(results) < 1:
             return False
+        return from_the_bottom
+    
+    @classmethod
+    def delete_guest(cls, data):
+        data = {
+            'id': data
+        }
+        query = "DELETE FROM verified_guest WHERE id = %(id)s"
+        results = connectToMySQL('blacklist').query_db(query, data)
         return results
+
+    @classmethod
+    def search_vguest(cls, data):
+        data = {
+            'phone_number': data
+        }
+        query = " SELECT * FROM verified_guest WHERE phone_number = %(phone_number)s"
+        results = connectToMySQL('blacklist').query_db(query, data)
+        print(results)
+        if not results or len(results) < 1:
+            return False
+        return results[0]
