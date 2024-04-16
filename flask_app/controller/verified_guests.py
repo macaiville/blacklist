@@ -41,11 +41,11 @@ def search_vguest():
 def search_blocked():
     return render_template('blocked.html')
 
-# @app.route('/search_vguest', methods=['POST'])
-# def search_vguest():
-#     if len(session) < 1:
-#         return redirect('/')
+@app.route('/search_blocked', methods=['POST'])
+def search_no_entry():
+    if len(session) < 1:
+        return redirect('/')
 
-#     phone_number = request.form.get('phone_number') 
-#     data = Vguest.search_vguest(phone_number)
-#     return render_template('search.html', data = data)
+    phone_number = request.form.get('phone_number') 
+    data = Vguest.search_blocked(phone_number)
+    return render_template('blocked.html', data = data)
