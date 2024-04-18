@@ -46,7 +46,7 @@
                                 {% if d['users.id'] == session['user_id'] %}
                                 <td class="text-center">{{d.first_name.upper()}}</td>
                                 <td class="text-center">{{d.last_name.upper()}}</td>
-                                <td class="text-center">{{d.date}}</td>
+                                <td class="text-center">{{d.date.strftime('%m-%d-%Y')}}</td>
                                 <td class="text-center">{{d.phone_number}}</td>
                                 <td class="text-center">
                                     <a class="btn btn-success btn-sm" href="/delete/{{d.id}}">Delete</a>
