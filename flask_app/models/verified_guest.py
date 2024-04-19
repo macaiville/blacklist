@@ -1,7 +1,11 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session
 import re
+from datetime import date
 
+
+
+current_date = date.today()
 phone = re.compile(r"^[0-9]{10}")
 
 class Vguest:
@@ -83,6 +87,7 @@ class Vguest:
     @staticmethod
     def verified_guest_validations(guest):
         blocked = Vguest.get_all_blocked()
+        print(current_date)
         valid = True
         if len(guest['first_name']) < 2:
             flash("First name needs to be at least 2 characters long")
@@ -98,6 +103,9 @@ class Vguest:
             valid = False
         if not guest['date']:
             flash("Please enter a date")
+            valid = False
+        if not guest['date'] == current_date:
+            flash("The date needs to be the current date!")
             valid = False
         if guest['phone_number'] in blocked:
             flash("THIS NUMBER AND GUEST IS BLOCKED! PLEASE SEARCH FOR GUEST IN 'SEARCH BLOCKED GUEST' BY PHONE NUMBER TO SEE WHY!")
