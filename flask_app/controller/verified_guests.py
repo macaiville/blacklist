@@ -49,3 +49,12 @@ def search_no_entry():
     phone_number = request.form.get('phone_number') 
     data = Vguest.search_blocked(phone_number)
     return render_template('blocked.html', data = data)
+
+@app.route('/search_vguest_date', methods=['POST'])
+def search_vguest_date():
+    if len(session) < 1:
+        return redirect('/')
+
+    date = request.form.get('date') 
+    all = Vguest.search_vguest_by_date(date)
+    return render_template('search.html', all = all)

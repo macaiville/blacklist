@@ -103,3 +103,15 @@ class Vguest:
             flash("THIS NUMBER AND GUEST IS BLOCKED! PLEASE SEARCH FOR GUEST IN 'SEARCH BLOCKED GUEST' BY PHONE NUMBER TO SEE WHY!")
             valid = False
         return valid
+    
+    @classmethod
+    def search_vguest_by_date(cls, data):
+        data = {
+            'date': data
+        }
+        query = " SELECT * FROM verified_guest WHERE date = %(date)s"
+        results = connectToMySQL('blacklist').query_db(query, data)
+        print(results)
+        if not results or len(results) < 1:
+            return None
+        return results
