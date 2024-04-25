@@ -1,13 +1,19 @@
 from flask_app.models.verified_guest import Vguest
 from flask_app import app
-from flask import request, redirect, session, render_template
+from flask import request, redirect, session, render_template, flash
+from datetime import date
 
 
 @app.route('/add_guest' , methods=["POST"])
 def today_guest():
+    c_date = date.today()
     if len(session) < 1:
         return redirect('/')
     if not Vguest.verified_guest_validations(request.form):
+        return redirect('/home')
+    
+    if not request.form['date'] == c_date:
+        flash("Date Needs to be Today's date!")
         return redirect('/home')
     
     Vguest.add_guest(request.form)
