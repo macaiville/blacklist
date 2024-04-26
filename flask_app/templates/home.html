@@ -21,7 +21,7 @@
             <div class="text-center mb-5 d-flex justify-content-around">
                 <a class="btn btn-danger p-2" href="/blocked">BlackList A Guest</a>
                 <a class="btn btn-success p-2" href="/search/by/date">Search By Date</a>
-                <a class="btn btn-success" href="/search/verified_guest">Search Verified Guest By Number</a>
+                <a class="btn btn-success" href="/search/verified_guest">Search By Number</a>
                 <a class="btn btn-success" href="/search/blocked">Search Blocked Guest</a>
                 <div class="">
                     <a class="btn btn-secondary p-2" href="/logout">Logout</a>
@@ -71,7 +71,7 @@
                     <label class="text-light mb-1" for="last_name">Last Name:</label>
                     <input class="form-control mb-1" type="text" name="last_name">
                     <label class="text-light mb-1" for="date">Date:</label>
-                    <input class="form-control mb-1" type="date" name="date" value="{{current_date}}">
+                    <input class="form-control mb-1" type="date" id="date" name="date" value="{{current_date}}">
                     <label class="text-light mb-1" for="phone_number">Phone Number:</label>
                     <input class="form-control mb-1" type="tel" name="phone_number">
                     <div class="text-end mt-2">
