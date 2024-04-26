@@ -12,9 +12,9 @@ def today_guest():
     if not Vguest.verified_guest_validations(request.form):
         return redirect('/home')
     
-    if not request.form['date'] == c_date:
-        flash("Date Needs to be Today's date!")
-        return redirect('/home')
+    # if not request.form['date'] == c_date:
+    #     flash("Date Needs to be Today's date!")
+    #     return redirect('/home')
     
     Vguest.add_guest(request.form)
     
@@ -32,6 +32,10 @@ def delete_guest(id):
 @app.route('/search/verified_guest')
 def search_verified():
     return render_template('search.html')
+
+@app.route('/search/by/date')
+def search_by_date():
+    return render_template('search_by_date.html')
 
 @app.route('/search_vguest', methods=['POST'])
 def search_vguest():
@@ -62,4 +66,4 @@ def search_vguest_date():
 
     date = request.form.get('date') 
     all = Vguest.search_vguest_by_date(date)
-    return render_template('search.html', all = all)
+    return render_template('search_by_date.html', all = all)

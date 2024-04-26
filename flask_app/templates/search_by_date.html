@@ -33,16 +33,9 @@
                     </svg>
 
                 </div>
-                <form method="post" action="/search_vguest">
-                    <label class="text-light mb-2" for="phone_number">Phone Number:</label>
-                    <input class="form-control" type="tel" name="phone_number">
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                    </div>
-                </form>
             </div>
                 <div class="col-7 m-5">
-                    {% if data  or all%}
+                    {% if all%}
                     <table class="table table-striped table-bordered mt-2">
                         <thead>
                             <th class="text-center">First Name</th>
@@ -52,27 +45,23 @@
                             <th class="text-center">Actions</th>
                         </thead>
                         <tbody>
+                            {% for all in all %}
                             <tr>
-                                <td class="text-center">{{ data.first_name if data else all.first_name }}</td>
-                                <td class="text-center">{{data.last_name if data else all.last_name}}</td>
-                                <td class="text-center">{{data.date.strftime('%m-%d-%Y') if data else all.date.strftime('%m-%d-%Y')}}</td>
-                                <td class="text-center">{{data.phone_number if data else all.phone_number}}</td>
+                                <td class="text-center">{{all['first_name'] }}</td>
+                                <td class="text-center">{{all.last_name}}</td>
+                                <td class="text-center">{{all.date}}</td>
+                                <td class="text-center">{{all.phone_number}}</td>
                                 <td class="text-center">
                                     <a class="btn btn-success btn-sm" href="/delete/{{data.id if data else all.id}}">Delete</a>
                                 </td>
                             </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                         {% else %}
                             <p>NO DATA</p>
                         {% endif %}
                 </div>
-        </div>
-
-        <div class="row">
-            <div class="col-3 m-3">
-                <p class="display-4 text-center text-light">OR</p>
-            </div>
         </div>
 
         <div class="row">
