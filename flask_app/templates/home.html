@@ -20,8 +20,9 @@
         <div class="row">
             <div class="text-center mb-5 d-flex justify-content-around">
                 <a class="btn btn-danger p-2" href="/blocked">BlackList A Guest</a>
-                <a class="btn btn-success p-2" href="">Verify Guest</a>
-                <a class="btn btn-success" href="/search/verified_guest">Search Verified Guest</a>
+                <a class="btn btn-success p-2" href="/search/by/date">Search By Date</a>
+                <a class="btn btn-success" href="/search/verified_guest">Search By Number</a>
+                <a class="btn btn-success" href="/search/blocked">Search Blocked Guest</a>
                 <div class="">
                     <a class="btn btn-secondary p-2" href="/logout">Logout</a>
                 </div>
@@ -29,6 +30,7 @@
         </div>
         <div class="row">
             <div class="col-7">
+                {% if data%}
                 <table class="table table-striped table-bordered mt-2">
                     <thead>
                         <th class="text-center">First Name</th>
@@ -39,17 +41,18 @@
                     </thead>
 
                     <tbody>
-                        {% if data %}
                             {%for d in data %}
                             <tr>
                                 {% if d['users.id'] == session['user_id'] %}
+                                    {% if d['date'] == current_date %}
                                 <td class="text-center">{{d.first_name.upper()}}</td>
                                 <td class="text-center">{{d.last_name.upper()}}</td>
-                                <td class="text-center">{{d.date}}</td>
+                                <td class="text-center">{{d.date.strftime('%m-%d-%Y')}}</td>
                                 <td class="text-center">{{d.phone_number}}</td>
                                 <td class="text-center">
                                     <a class="btn btn-success btn-sm" href="/delete/{{d.id}}">Delete</a>
                                 </td>
+                                    {% endif %}
                                 {% endif %}
                             </tr>
                             {% endfor %}
@@ -68,7 +71,7 @@
                     <label class="text-light mb-1" for="last_name">Last Name:</label>
                     <input class="form-control mb-1" type="text" name="last_name">
                     <label class="text-light mb-1" for="date">Date:</label>
-                    <input class="form-control mb-1" type="date" name="date">
+                    <input class="form-control mb-1" type="date" id="date" name="date" value="{{current_date}}">
                     <label class="text-light mb-1" for="phone_number">Phone Number:</label>
                     <input class="form-control mb-1" type="tel" name="phone_number">
                     <div class="text-end mt-2">
@@ -87,21 +90,7 @@
                 {% endwith %}
             </div>
         </div>
-        <div class="row">
-            <div class="col-3 m-5">
-                <form action="/search_vguest" method="post">
-                    <label class="text-light mb-2" for="phone_number">Enter A Phone Number:</label>
-                    <input class="form-control" type="tel" name="phone_number">
-                    <div class="text-end">
-                        <button class="btn btn-primary mt-2">Search</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
     
-
-
-
 </body>
 </html>

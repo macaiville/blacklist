@@ -3,6 +3,8 @@ from flask_app.models.verified_guest import Vguest
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
 from flask_bcrypt import Bcrypt
+from datetime import date
+
 
 bcrypt = Bcrypt(app)
 
@@ -14,8 +16,10 @@ def login_page():
 def home():
     if len(session) < 1:
         return redirect('/')
+    
+    current_date = date.today()
     data = Vguest.get_all_guest(session['user_id'])
-    return render_template("home.html", data = data)
+    return render_template("home.html", data = data, current_date = current_date)
 
 @app.route('/create_user')
 def new_user():

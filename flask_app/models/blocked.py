@@ -35,3 +35,12 @@ class Blocked:
         query = "INSERT INTO blocked(phone_number, comment, user_id) VALUES(%(phone_number)s, %(comment)s, %(user_id)s)"
         results = connectToMySQL('blacklist').query_db(query, data)
         return results
+    
+    @classmethod
+    def delete_blocked(cls, data):
+        data = {
+            'id': data
+        }
+        query = "DELETE FROM blocked WHERE id = %(id)s"
+        results = connectToMySQL('blacklist').query_db(query, data)
+        return results
