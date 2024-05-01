@@ -31,10 +31,14 @@ def delete_guest(id):
 
 @app.route('/search/verified_guest')
 def search_verified():
+    if not session or len(session) < 1:
+        return redirect("/")
     return render_template('search.html')
 
 @app.route('/search/by/date')
 def search_by_date():
+    if not session or len(session) < 1:
+        return redirect("/")
     return render_template('search_by_date.html')
 
 @app.route('/search_vguest', methods=['POST'])
@@ -48,6 +52,8 @@ def search_vguest():
 
 @app.route('/search/blocked')
 def search_blocked():
+    if not session or len(session) < 1:
+        return redirect("/")
     return render_template('blocked.html')
 
 @app.route('/search_blocked', methods=['POST'])
