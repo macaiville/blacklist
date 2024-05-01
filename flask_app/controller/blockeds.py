@@ -6,6 +6,8 @@ from flask import flash, session, redirect, request, render_template, flash, url
 
 @app.route('/blocked')
 def blocked_page():
+    if not session or len(session) < 1:
+        return redirect("/")
     return render_template('blacklist.html')
 
 @app.route('/blocked_for_life', methods=['POST'])
