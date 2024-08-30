@@ -10,7 +10,7 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def login_page():
-    return render_template("login_page.html")
+    return render_template("index.html")
 
 @app.route('/home')
 def home():
